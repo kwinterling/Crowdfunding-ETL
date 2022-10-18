@@ -52,6 +52,17 @@ CREATE TABLE "contacts" (
      )
 );
 
+CREATE TABLE "backers" (
+    "backer_id" varchar(5)   NOT NULL,
+    "cf_id" int   NOT NULL,
+    "first_name" varchar(20)   NOT NULL,
+    "last_name" varchar(20)   NOT NULL,
+    "email" varchar(50)   NOT NULL,
+    CONSTRAINT "pk_backers" PRIMARY KEY (
+        "backer_id"
+     )
+);
+
 ALTER TABLE "campaign" ADD CONSTRAINT "fk_campaign_contact_id" FOREIGN KEY("contact_id")
 REFERENCES "contacts" ("contact_id");
 
@@ -60,4 +71,7 @@ REFERENCES "category" ("category_id");
 
 ALTER TABLE "campaign" ADD CONSTRAINT "fk_campaign_subcategory_id" FOREIGN KEY("subcategory_id")
 REFERENCES "subcategory" ("subcategory_id");
+
+ALTER TABLE "backers" ADD CONSTRAINT "fk_backers_cf_id" FOREIGN KEY("cf_id")
+REFERENCES "campaign" ("cf_id");
 
